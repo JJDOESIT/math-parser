@@ -1,0 +1,14 @@
+C:\Computer Science\C#\MathParser\bin\Debug\net8.0\MathParser.exe
+C:\Computer Science\C#\MathParser\bin\Debug\net8.0\MathParser.deps.json
+C:\Computer Science\C#\MathParser\bin\Debug\net8.0\MathParser.runtimeconfig.json
+C:\Computer Science\C#\MathParser\bin\Debug\net8.0\MathParser.dll
+C:\Computer Science\C#\MathParser\bin\Debug\net8.0\MathParser.pdb
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.AssemblyInfoInputs.cache
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.AssemblyInfo.cs
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.csproj.CoreCompileInputs.cache
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.dll
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\refint\MathParser.dll
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.pdb
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.genruntimeconfig.cache
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\ref\MathParser.dll
