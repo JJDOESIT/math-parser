@@ -1,13 +1,8 @@
 # Math Parser
 
-**Requirements:**  
-Windows or Linux Environment
-
----
-
 ## Quick Install
 
-1. Download the latest [math-parser.zip](https://github.com/JJDOESIT/math-parser/releases/tag/v1.0.0) release for Windows.
+1. Download the latest [release](https://github.com/JJDOESIT/math-parser/releases/tag/v1.0.0) for your environment.
 2. Extract the files.
 3. Run `MathParser.exe`.
 
