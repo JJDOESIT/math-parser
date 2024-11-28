@@ -12,3 +12,4 @@ C:\Computer Science\C#\MathParser\obj\Debug\net8.0\refint\MathParser.dll
 C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.pdb
 C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.genruntimeconfig.cache
 C:\Computer Science\C#\MathParser\obj\Debug\net8.0\ref\MathParser.dll
+C:\Computer Science\C#\MathParser\obj\Debug\net8.0\MathParser.sourcelink.json
