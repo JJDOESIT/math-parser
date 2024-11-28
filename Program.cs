@@ -4,16 +4,48 @@
     private static Dictionary<string, int> precedenceDict = new Dictionary<string, int> { { "^", 0 }, { "*", 1 }, { "/", 1 } };
     private static Dictionary<int, string> operandOrderDict = new Dictionary<int, string> { { 0, "right-to-left" }, { 1, "left-to-right" } };
 
+    // Math parser program
     public static void Main(string[] args)
     {
         try
         {
-            run();
-            //test("test.txt");
+            // Clear the stack
+            stack.Clear();
+            string? userInput;
+            do
+            {
+                // Ask for user input
+                Console.WriteLine("Enter 1 to enter custom expression.");
+                Console.WriteLine("Enter 2 to run test file.");
+                Console.WriteLine("Enter 3 to exit program.");
+                Console.Write("Input: ");
+                userInput = Console.ReadLine();
+                Console.WriteLine("");
+                // Custom expression
+                if (userInput == "1")
+                {
+                    run();
+                }
+                // Test file
+                else if (userInput == "2")
+                {
+                    test("test.txt");
+                }
+                else if (userInput == "3")
+                {
+                    Environment.Exit(0);
+                }
+                userInput = "";
+            } while (userInput != "2");
         }
         catch (Exception error)
         {
+            // Print error message
+            Console.WriteLine("");
             Console.WriteLine(error.Message);
+            Console.WriteLine("");
+            // Resart program
+            Main([]);
         }
     }
 
@@ -22,38 +54,29 @@
     {
         try
         {
-            string? userInput = "";
-            do
+            // Inititilze the stack from user input
+            initilizeStack(null);
+            // Add implicit multiplication to the expression
+            addImplicitMultiplication();
+            // Add order of operations to the expression
+            addParenthesis();
+            // Display the processed expression
+            Console.Write("Processed Expression: ");
+            foreach (string c in stack)
             {
-                Console.WriteLine("Press 1 to calculate an expression.");
-                Console.WriteLine("Press 2 to exit program.");
-                Console.Write("Input: ");
-                userInput = Console.ReadLine();
-                if (userInput == "1")
-                {
-                    // Inititilze the stack from user input
-                    initilizeStack(null);
-                    // Add implicit multiplication to the expression
-                    addImplicitMultiplication();
-                    // Add order of operations to the expression
-                    addParenthesis();
-                    Console.Write("Processed Expression: ");
-                    foreach (string c in stack)
-                    {
-                        Console.Write(c);
-                        Console.Write(" ");
-                    }
-                    Console.WriteLine("");
-                    float value;
-                    (value, _) = calculateEquation(0);
-                    Console.Write("Final Answer: ");
-                    Console.WriteLine(value);
-                    Console.WriteLine(" ");
-                    stack.Clear();
-                    userInput = "";
-                }
-            } while (userInput != "2");
-
+                Console.Write(c);
+                Console.Write(" ");
+            }
+            Console.WriteLine("");
+            // Calculate equation
+            float value;
+            (value, _) = calculateEquation(0);
+            // Display final answer
+            Console.Write("Final Answer: ");
+            Console.WriteLine(value);
+            Console.WriteLine("");
+            // Clear stack
+            stack.Clear();
         }
         catch
         {
@@ -98,7 +121,6 @@
         int index = 1;
         try
         {
-
             int passNumber = 0;
             int failNumber = 0;
             var lines = File.ReadLines(filename);
@@ -128,6 +150,7 @@
             Console.WriteLine(passNumber);
             Console.Write("Fail Rate: ");
             Console.WriteLine(failNumber);
+            Console.WriteLine(" ");
         }
         catch
         {
@@ -183,7 +206,6 @@
     {
         try
         {
-
             string? userInput;
             // If the input is null, read in expression from user
             if (input == null)
@@ -486,20 +508,27 @@
     // ie. '2 ( 2 + 1 )' -> '2 * ( 2 + 1 )'
     public static void addImplicitMultiplication()
     {
-        for (int index = 0; index < stack.Count - 1; index++)
+        try
         {
-            if (double.TryParse(stack[index], out _) && stack[index + 1] == "(")
+            for (int index = 0; index < stack.Count - 1; index++)
             {
-                stack.Insert(index + 1, "*");
+                if (double.TryParse(stack[index], out _) && stack[index + 1] == "(")
+                {
+                    stack.Insert(index + 1, "*");
+                }
+                else if (double.TryParse(stack[index + 1], out _) && stack[index] == ")")
+                {
+                    stack.Insert(index + 1, "*");
+                }
+                else if (stack[index] == ")" && stack[index + 1] == "(")
+                {
+                    stack.Insert(index + 1, "*");
+                }
             }
-            else if (double.TryParse(stack[index + 1], out _) && stack[index] == ")")
-            {
-                stack.Insert(index + 1, "*");
-            }
-            else if (stack[index] == ")" && stack[index + 1] == "(")
-            {
-                stack.Insert(index + 1, "*");
-            }
+        }
+        catch
+        {
+            throw new Exception("Error: Failed to process given expression. Check parenthesis, and only use '+', '-' , '*', '/', and '^'. ");
         }
     }
 
@@ -674,6 +703,5 @@
         {
             throw new Exception("Error: Failed to calculate given expression. Check parenthesis, and only use '+', '-' , '*', '/', and '^'. ");
         }
-
     }
 }
